@@ -1,7 +1,17 @@
 #ifndef pid_h
 #define pid_h
 
-class pid{
+class PID {
+public:
+    PID();
+
+    ~PID();
+
+    void killer();
+
+    void noob();
+
+private:
 
 
 
