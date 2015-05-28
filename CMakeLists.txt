@@ -4,7 +4,7 @@ project(pid)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES
-    pid.cpp
-    pid.h)
+    pid_stabilizer.cpp
+    pid_stabilizer.h)
 
 add_executable(pid ${SOURCE_FILES})

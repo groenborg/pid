@@ -16,7 +16,7 @@ Engine::~Engine() {
 }
 
 bool Engine::armEngine() {
-    Serial.print("Arm engine");
+    
     _sr.write(10);
     _br.write(10);
     _sw.write(10);

@@ -4,7 +4,6 @@
 ###Introduction
 This report is written as an explanation and documentation for the chosen subject, PID controllers, in the course AI and Algorithms, on 4th semester spring 2015. This report is our examination material, which also includes our own data analysis and conclusion, along with our code implementation. This specific code implementation has been made for a drone, powered by an Arduino Mega 2560, which is needed, along with the Arduino IDE, if it is desired to run the program.  
 
-
 ###Subject explanation
 For the fifth hand-in, we chose to work with different algorithms used in drone stabilization. For this we chose PID controllers:
 - A Proportional-Derivative (PD) implementation.
@@ -12,7 +11,7 @@ For the fifth hand-in, we chose to work with different algorithms used in drone 
 
 We have made a PID controller, which is able to stabilize a drone. The PD implementation was just for testing, and is not included, since PID is the final and most effective solution. 
 
-##PID - Proportional Integral Derivative 
+###PID - Proportional Integral Derivative 
 ![Feedback loop](loop.png)
 A proportional-integral-derivative controller, is a closed feedback control loop. This control system is widely used in industrial control systems. The general concept is that we want to calculate an error value based on the difference between a setpoint value and a meassured variable. The controller then try to adjust the system, so as to minimize this error value. This algorithm involves three seperate constant parameters, which is why it is also referenced as a three-term controller, the proportional, integral and derivative values. 
 - P - The proportional depends on the present error
@@ -23,6 +22,7 @@ The weighted sum of these three actions is what we use to adjust our system. In 
 
 ###Our Calculations
 The controller system includes three functions, we have adjusted to match our own values. This is the math we have implemented in our own closed feedback-loop. The speedconversion can be found in our code.
+
 \\[
 P = {K_p} \cdot {V_e}
 \\]
@@ -35,6 +35,26 @@ D = {K_d} \cdot {V_e} - {V_{el}}
 \\[
 Weight = P + I+ D
 \\]
+
+###Pseudo code
+
+// measure the error (angle in degrees)
+
+// calculate proportional value
+
+// add error to error-buffer
+
+// calculate integral value
+
+// calculate derivative value
+
+// calculate sum of PID
+
+// translate error sum to speed value
+
+// use calculated speed, to to distribute speed between motors
+
+// set error to last-error
 
 ###The code
 **Pid_stabilizer h_file**
@@ -216,7 +236,7 @@ float calculateSpeed(){
 
 
 ###Conclusion / data analysis
-We could not analyse our own data, since prints in the code actually corrupts the stabilization. But we visually analysed the drones behaviour, and we studied the faulty data. We can conclude that our model is somewhat consistent with the picture below. The red line shows a calibration, where there the derivative term is weighted too high. The purple line shows a calibration the the integral term is too high
+We could not analyse our own data, since prints in the code actually corrupts the stabilization. But we visually analysed the drones behaviour, and we studied the faulty data. We can conclude that our model is somewhat consistent with the picture below. The red line shows a calibration, where there the derivative term is weighted too high. The purple line shows a calibration the the integral term is too high. Our algorithm worked, and stabilized our drone quickly. 
 
 
 See the video of our drone here:
@@ -228,6 +248,6 @@ See the video of our drone here:
 
 ###Optimization
 There are some optimization possibilites in our program, and in how we calculate our weighed error.
-- Add a time calculation to the derivative part. Right now we dont calculate the derivation based on time intervals, but just on processor ticks.
+- Add a time calculation to make sure error samples are taken at same intervals. Right now we can't be interely sure that one run through of our main loop will time the same as the next runthrough. It should be based on time intervals, and not on processor ticks.
 - The other bottleneck is the engines of the drone. We cannot adjust in decimals, only rounded values. So complete precision cannot be achived with this specific engine library. 
 
