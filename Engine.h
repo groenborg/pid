@@ -11,10 +11,10 @@ public:
 	Engine(int srPin, int brPin, int swPin, int bwPin);
 	~Engine();
 	bool armEngine();
-
 	void throttle(int speed);
 	void engineSR(float speed);
 	void engineSW(float speed);
+	void engineBR(float speed);
 	void stop();
 private:
 	Servo _sr; // 2
