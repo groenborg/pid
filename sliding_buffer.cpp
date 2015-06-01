@@ -40,6 +40,5 @@ void SlidingBuffer::reset(){
     for(int i = 0; i < _size; ++i){
         _buffer[i] = 0.0f;
     }
-
 }
 
