@@ -17,6 +17,7 @@ public:
 
     float getSum();
 
+    void reset();
 private:
     float _sum;
     int _size;

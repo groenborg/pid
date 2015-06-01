@@ -26,6 +26,8 @@ public:
 	//calculates Full PID value
 	float calcPID(float error);
 
+	// bufferreset
+	void resetBuffer();
 private:
 
 	float _Kp;

@@ -46,3 +46,7 @@ float PidControl::calcPID(float error){
 	return val;
 
 }
+
+void PidControl::resetBuffer(){
+	_buffer->reset();
+}

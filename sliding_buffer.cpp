@@ -9,9 +9,7 @@ SlidingBuffer::SlidingBuffer(int size) {
     _size = size;
     _counter = 0;
     _buffer = new float[size];
-    for (int i = 0; i < size; ++i) {
-        _buffer[i] = 0.0f;
-    }
+    reset();
     _sum = 0.0f;
 }
 
@@ -37,3 +35,11 @@ float SlidingBuffer::add(float value) {
 float SlidingBuffer::getSum() {
     return _sum;
 }
+
+void SlidingBuffer::reset(){
+    for(int i = 0; i < _size; ++i){
+        _buffer[i] = 0.0f;
+    }
+
+}
+
